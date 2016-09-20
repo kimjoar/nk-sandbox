@@ -1,0 +1,9 @@
+<div ng-controller="MyAppController">
+  <h2>Angular Kibana app example</h2>
+  <ul ng-repeat="(key, value) in phones">
+    <li>
+      <h3 ng-bind="value.name"></h3>
+      <p ng-bind="value.snippet"></p>
+    </li>
+  </ul>
+</div>

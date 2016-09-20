@@ -1,26 +1,26 @@
 class KibanaApplication {
   constructor(props) {
     this.props = props
-    this._el = undefined
   }
 
   willMount() {
+    console.log('top, will mount')
   }
 
-  didMount() {
+  didMount({ el }) {
+    console.log('top, did mount', el)
   }
 
   willUpdate() {
+    console.log('top, will update')
   }
 
   didUpdate() {
+    console.log('top, did update')
   }
 
   willUnmount() {
-  }
-
-  render() {
-    return <div ref={ node => { this._el = node } } />
+    console.log('top, will unmount')
   }
 }
 

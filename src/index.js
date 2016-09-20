@@ -11,7 +11,7 @@ const initialState = {
   applications: {
     foo: {
       id: 'foo',
-      name: 'Foo',
+      name: 'Angular app',
       route: 'foo'
     }
   }
