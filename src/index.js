@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import Router from 'react-router/BrowserRouter'
 
-import App from './core/components/AppContainer'
+import { AppContainer } from './core/components'
 import configureStore from './configureStore'
 
 // TODO Remove, this is just for testing.
@@ -28,7 +28,7 @@ const store = configureStore({ initial: initialState })
 render(
   <Provider store={ store }>
     <Router>
-      <App />
+      <AppContainer />
     </Router>
   </Provider>,
   document.getElementById('root')

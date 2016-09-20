@@ -2,8 +2,13 @@ import React from 'react';
 import { Match, Link, Miss } from 'react-router'
 import { map } from 'lodash'
 
-import Home from './Home/HomeContainer'
-import Applications from './Applications/ApplicationsContainer'
+import {
+  HomeContainer,
+} from './Home'
+
+import {
+  ApplicationsContainer,
+} from './Applications'
 
 const createAppUrl = app => `/app/${app.route}`
 
@@ -11,7 +16,7 @@ function NoMatch({ location }) {
   return <p>Route does not exist: { location.pathname }</p>
 }
 
-function App({ applications }) {
+function AppView({ applications }) {
   return <div>
     <nav>
       <ul>
@@ -26,10 +31,10 @@ function App({ applications }) {
       </ul>
     </nav>
 
-    <Match exactly pattern='/' component={ Home }/>
-    <Match pattern='/app' component={ Applications }/>
+    <Match exactly pattern='/' component={ HomeContainer }/>
+    <Match pattern='/app' component={ ApplicationsContainer }/>
     <Miss component={ NoMatch }/>
   </div>
 }
 
-export default App;
+export default AppView;

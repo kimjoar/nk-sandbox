@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import App from './App'
+import AppView from './AppView'
 import { getApplications } from '../reducers'
 
 const mapStateToProps = state => ({
@@ -14,4 +14,4 @@ export default connect(
   {
     pure: false
   }
-)(App)
+)(AppView)

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Home from './'
+import HomeView from './HomeView'
 
 const mapStateToProps = state => ({
 })
@@ -8,4 +8,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {}
-)(Home)
+)(HomeView)
