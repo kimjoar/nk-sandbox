@@ -48,7 +48,9 @@ class Application extends Component {
     }
 
     const api = {
-      updateTimepickerRefreshInterval
+      timepicker: {
+        updateRefreshInterval: updateTimepickerRefreshInterval
+      }
     }
 
     return <Run
