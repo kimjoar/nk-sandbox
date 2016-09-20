@@ -5,7 +5,7 @@ Which philosophy has to yield? (i.e. there will be pain for some)
 
 Applications and plugins should have a proper lifecycle.
 
-## Application (class: `Kibana.App`)
+## Application (class: `KibanaApplication`)
 
 - `constructor`: Applications are created when needed
 - `willMount`: A Kibana app won't always render, called before rendering
@@ -15,7 +15,7 @@ Applications and plugins should have a proper lifecycle.
 - `willUnmount`: When removing app
 - `render`: To render, defaults to `<div />` (Or remove to being with?)
 
-## Plugin (class: `Kibana.Plugin`)
+## Plugin (class: `KibanaPlugin`)
 
 - `constructor`: All plugins are created when Kibana starts up
 - `willUpdate`: Receiving new props, e.g. if core or plugins state has changed
