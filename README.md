@@ -61,7 +61,7 @@ External api (aka actions) + state?
 
 How do we get specific broadcast to work for plugins?
 
-### Plugin deps
+### Depend on other Kibana apps or plugins
 
 Strict pre-defined deps? Maybe something like:
 
@@ -76,7 +76,7 @@ Is this _actually_ needed?
 Core _must_ own routing. Use React Router v4. Need to inject `Match`,
 `matchPattern`, `Link` et al.
 
-# Kibana kit
+# Kibana kit / api
 
 Features plugins have access to.
 

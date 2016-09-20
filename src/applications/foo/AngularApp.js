@@ -2,7 +2,7 @@ import angular from 'angular'
 
 const myApp = angular.module('myApp', []);
 
-myApp.controller('MyAppController', function($scope, $timeout) {
+myApp.controller('FooController', function($scope, $timeout) {
   $scope.phones = [
     {
       name: 'Nexus S',

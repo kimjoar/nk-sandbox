@@ -4,6 +4,8 @@ import deepEqual from 'deep-equal'
 import Run from './Run'
 import KibanaApplication from './KibanaApplication'
 
+// Every app in its own JS
+// https://webpack.github.io/docs/code-splitting.html
 function loadApp(packageName) {
   return new Promise(resolve => {
     require.ensure([], () => {

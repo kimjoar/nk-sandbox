@@ -34,6 +34,7 @@ export default KibanaApplication =>
       console.log('foo did update', this.props.core)
 
       // TODO Get this state into the angular app
+      // Not sure about the best process for that
     }
 
     willUnmount() {
