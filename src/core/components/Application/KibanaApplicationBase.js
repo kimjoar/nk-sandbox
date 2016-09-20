@@ -1,4 +1,4 @@
-class KibanaApplication {
+class KibanaApplicationBase {
   constructor(props) {
     this.props = props
   }
@@ -19,4 +19,4 @@ class KibanaApplication {
   }
 }
 
-export default KibanaApplication
+export default KibanaApplicationBase

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { omit } from 'lodash'
 
-class RunApplication extends Component {
+class KibanaApplicationRunner extends Component {
   constructor(props) {
     super(props)
 
@@ -40,4 +40,4 @@ class RunApplication extends Component {
   }
 }
 
-export default RunApplication
+export default KibanaApplicationRunner

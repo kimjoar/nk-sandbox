@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import deepEqual from 'deep-equal'
 
-import Run from './Run'
-import KibanaApplication from './KibanaApplication'
+import KibanaApplicationRunner from './KibanaApplicationRunner'
+import KibanaApplicationBase from './KibanaApplicationBase'
 
 // Every app in its own JS
 // https://webpack.github.io/docs/code-splitting.html
@@ -52,7 +52,7 @@ class ApplicationView extends Component {
       }
     }
 
-    return <Run
+    return <KibanaApplicationRunner
       App={ App }
       core={ core }
       api={ api } />
@@ -68,7 +68,7 @@ class ApplicationView extends Component {
     // Only load app when needed
     loadApp(id).then(createAppClass => {
       this.setState({
-        App: createAppClass(KibanaApplication)
+        App: createAppClass(KibanaApplicationBase)
       })
     })
   }
