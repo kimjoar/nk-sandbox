@@ -27,8 +27,8 @@ Both core and plugin state lives in Redux in core
 - Within core it's normal action -> reducer flow.
 - From plugins it's notifying about change, then core pulling changes.
 
-Re-render plugins when state has updated. This will trigger `willUpdate`.
-Also broadcast changes using a middleware. Use Court's idea for specific broadcasts?
+Re-render plugins when state has updated. This will trigger `willUpdate` and `didUpdate`.
+Also broadcast changes using a middleware? (If so, use Court's idea for specific broadcasts?)
 
 Doing this it should be easy to include in Redux, Angular, and other apps.
 
@@ -121,6 +121,17 @@ Verify versions at startup?
 _Always_ inject Kibana deps. A plugin should _never_ be able to require
 something from Kibana core.
 
-# Crazy ideas
+One idea for applications and plugins is to receive the base class:
 
-Is it possible to lazy load plugins? Inspiration: https://github.com/ReactTraining/react-router/blob/v4/website/routes.js#L14-L17
+```
+export default function(KibanaApplication) {
+  return class MyKibanaApp extends KibanaApplication {
+  }
+}
+
+// aka
+
+export default KibanaApplication =>
+  class MyKibanaApp extends KibanaApplication {
+  }
+```
