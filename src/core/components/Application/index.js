@@ -21,13 +21,13 @@ class Application extends Component {
 
   componentWillMount() {
     const { appMeta } = this.props
+    this.loadApp(appMeta.id)
+  }
 
-    // Only load app when needed
-    loadApp(appMeta.id).then(createAppClass => {
-      this.setState({
-        App: createAppClass(KibanaApplication)
-      })
-    })
+  componentWillReceiveProps(nextProps) {
+    if (this.props.appMeta.id !== nextProps.appMeta.id) {
+      this.loadApp(nextProps.appMeta.id)
+    }
   }
 
   // TODO Remove when React Router doesn't unnecessarily update `params`
@@ -57,6 +57,21 @@ class Application extends Component {
       App={ App }
       core={ core }
       api={ api } />
+  }
+
+  // Helper that first resets the current app, then fetches and prepares the
+  // new app
+  loadApp(id) {
+    this.setState({
+      App: undefined
+    })
+
+    // Only load app when needed
+    loadApp(id).then(createAppClass => {
+      this.setState({
+        App: createAppClass(KibanaApplication)
+      })
+    })
   }
 }
 

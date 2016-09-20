@@ -14,6 +14,11 @@ const initialState = {
       id: 'foo',
       name: 'Angular app',
       route: 'foo'
+    },
+    bar: {
+      id: 'bar',
+      name: 'React app',
+      route: 'bar'
     }
   }
 }
