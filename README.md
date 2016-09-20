@@ -13,7 +13,10 @@ Applications and plugins should have a proper lifecycle.
 - `willUpdate`: Before new props, e.g. if core or plugins state has changed
 - `didUpdate`: After new props
 - `willUnmount`: When removing app
-- `render`: To render, defaults to `<div />` (Or remove to being with?)
+
+_Maybe_ add `render` to make it easier for React plugins:
+
+- `render`: To render, defaults to `<div />`
 
 ## Plugin (class: `KibanaPlugin`)
 
