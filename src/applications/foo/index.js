@@ -13,15 +13,28 @@ console.log('foo required')
 
 export default KibanaApplication =>
   class Foo extends KibanaApplication {
-    constructor() {
-      super()
-      console.log('foo constructor')
+    constructor(props) {
+      super(props)
+      console.log('foo constructor', props)
     }
 
     didMount({ el }) {
-      console.log('foo did mount', el)
+      this.el = el
+      console.log('foo did mount', el, this.props)
 
       el.appendChild(renderTemplate(mainTemplate))
       angular.bootstrap(el, ['myApp'])
+
+      this._interval = setInterval(() => {
+        this.props.api.updateTimepickerRefreshInterval(Math.random() * 100)
+      }, 3000)
+    }
+
+    didUpdate() {
+      console.log('foo did update', this.props.core)
+    }
+
+    willUnmount() {
+      clearInterval(this._interval)
     }
   }

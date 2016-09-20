@@ -26,9 +26,9 @@ function App({ applications }) {
       </ul>
     </nav>
 
-    <Match exactly pattern='/' component={ Home } />
-    <Match pattern='/app' component={ Applications } />
-    <Miss component={ NoMatch } />
+    <Match exactly pattern='/' component={ Home }/>
+    <Match pattern='/app' component={ Applications }/>
+    <Miss component={ NoMatch }/>
   </div>
 }
 

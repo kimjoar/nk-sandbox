@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import { omit } from 'lodash'
 
 class RunApplication extends Component {
   constructor(props) {
     super(props)
 
-    this.app = new props.App()
+    this.app = new props.App(omit(props, 'App'))
     this.el = undefined
   }
 
@@ -19,7 +20,10 @@ class RunApplication extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('new props', nextProps, this.props)
+    var newProps = omit(nextProps, 'App')
+    this.app.willUpdate(newProps)
+    this.app.props = newProps
+    this.app.didUpdate()
   }
 
   componentWillUnmount() {
