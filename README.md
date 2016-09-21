@@ -131,6 +131,10 @@ on Visualize?
 Core _must_ own routing. Use React Router v4. Need to inject `Match`,
 `matchPattern`, `Link` et al.
 
+(One problem though: The React Router helpers _must_ be rendered within the
+existing React app as they rely on `context`. `matchPattern` doesn't, as it's
+the low-level implementation of `Match` et al.)
+
 # Kibana kit / api
 
 Features plugins have access to.
