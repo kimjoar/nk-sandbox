@@ -1,7 +1,10 @@
 import React from 'react';
-import { render } from 'react-dom';
 
 console.log('bar required')
+
+function Login() {
+  return <p>Login</p>
+}
 
 export default KibanaApplication =>
   class Bar extends KibanaApplication {
@@ -14,8 +17,6 @@ export default KibanaApplication =>
       this.el = el
       console.log('bar did mount', el, this.props)
 
-      this.render()
-
       this._interval = setInterval(() => {
         this.props.api.timepicker.updateRefreshInterval(Math.random() * 100)
       }, 3000)
@@ -23,20 +24,18 @@ export default KibanaApplication =>
 
     didUpdate() {
       console.log('bar did update', this.props.core)
-
-      this.render()
     }
 
     willUnmount() {
       clearInterval(this._interval)
     }
 
-    // This is just to show that you can implement your own `render` in an app,
-    // so we don't necessarily have to provide it built-in.
     render() {
-      render(
-        <p>bar: { this.props.core.refreshInterval }!</p>,
-        this.el
-      )
+      const { Match } = this.props.api.routing
+
+      return <div>
+        <p>bar: { this.props.core.refreshInterval }!</p>
+        <Match pattern='login' component={ Login } />
+      </div>
     }
   }

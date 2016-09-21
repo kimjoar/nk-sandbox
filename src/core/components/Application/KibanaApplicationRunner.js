@@ -30,13 +30,10 @@ class KibanaApplicationRunner extends Component {
     this.app.willUnmount()
   }
 
-  shouldComponentUpdate() {
-    // The plugin re-renders itself, so we don't need to do anything here.
-    return false;
-  }
-
   render() {
-    return <div ref={ node => { this.el = node } } />
+    return <div ref={ node => { this.el = node } }>
+      { this.app.render() }
+    </div>
   }
 }
 

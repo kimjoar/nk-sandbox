@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import deepEqual from 'deep-equal'
+import { Match, matchPattern } from 'react-router'
 
 import KibanaApplicationRunner from './KibanaApplicationRunner'
 import KibanaApplicationBase from './KibanaApplicationBase'
@@ -53,6 +54,10 @@ class ApplicationView extends Component {
     const api = {
       timepicker: {
         updateRefreshInterval: updateTimepickerRefreshInterval
+      },
+      routing: {
+        Match,
+        matchPattern
       }
     }
 

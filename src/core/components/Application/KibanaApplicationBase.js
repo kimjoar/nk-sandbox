@@ -17,6 +17,10 @@ class KibanaApplicationBase {
 
   willUnmount() {
   }
+
+  render() {
+    return null
+  }
 }
 
 export default KibanaApplicationBase
