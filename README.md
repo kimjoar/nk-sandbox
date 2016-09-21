@@ -48,6 +48,18 @@ Is that enough?
 
 ## Plugin to core
 
+Inject actions into plugins. These actions might end up in state changes,
+that in turn will update the plugin.
+
+Some plugins need to extend core, e.g. Security. What does it need to
+extend? One example is that it now registers interceptors on ajax requests
+(in order to redirect to login page if a 401 is received).
+
+(Hm, need to think about extending "Kibana kit/api" vs actually extending
+core. What's the difference? Is only extending the kit/api needed?)
+
+### Example
+
 TimePicker in core? Need to be able to update, e.g.
 
 ```
@@ -55,8 +67,6 @@ kibana.timepicker.setRefreshInterval(60)
 ```
 
 Which end up in a "pure Redux action dispatch"?
-
-Some plugins need to extend core, e.g. Security.
 
 ## Plugin to plugin
 
