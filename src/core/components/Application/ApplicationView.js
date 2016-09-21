@@ -16,6 +16,7 @@ function loadApp(packageName) {
 
 class ApplicationView extends Component {
   state = {
+    // The currently running application
     App: undefined
   }
 
@@ -25,10 +26,12 @@ class ApplicationView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // Whenever we switch application, load the new app
     if (this.props.appMeta.id !== nextProps.appMeta.id) {
       this.loadApp(nextProps.appMeta.id)
     }
   }
+
   // TODO Remove when React Router doesn't unnecessarily update `params`
   shouldComponentUpdate(nextProps, nextState) {
     return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state)
@@ -46,6 +49,7 @@ class ApplicationView extends Component {
       return <p>Fetching app: { appMeta.name }</p>
     }
 
+    // Build up the api that we make available to plugins
     const api = {
       timepicker: {
         updateRefreshInterval: updateTimepickerRefreshInterval
