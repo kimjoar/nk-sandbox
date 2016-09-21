@@ -1,10 +1,10 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import Router from 'react-router/BrowserRouter'
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import Router from 'react-router/BrowserRouter';
 
-import { AppContainer } from './core/components'
-import configureStore from './configureStore'
+import { KibanaContainer } from './core/components';
+import configureStore from './configureStore';
 
 // TODO Remove, this is just for testing.
 // How do we want to get the initial list of applications?
@@ -21,15 +21,15 @@ const initialState = {
       route: 'bar'
     }
   }
-}
+};
 
-const store = configureStore({ initial: initialState })
+const store = configureStore({ initial: initialState });
 
 render(
   <Provider store={ store }>
     <Router>
-      <AppContainer />
+      <KibanaContainer />
     </Router>
   </Provider>,
   document.getElementById('root')
-)
+);

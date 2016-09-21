@@ -1,6 +1,7 @@
-class KibanaApplicationBase {
+export default class AppBase {
+  
   constructor(props) {
-    this.props = props
+    this.props = props;
   }
 
   willMount() {
@@ -19,8 +20,6 @@ class KibanaApplicationBase {
   }
 
   render() {
-    return null
+    return null;
   }
 }
-
-export default KibanaApplicationBase
