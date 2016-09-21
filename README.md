@@ -3,16 +3,17 @@ Which philosophy has to yield? (i.e. there will be pain for some)
 
 # Extension "points"
 
+(I need to re-work this. I don't think it fits our current Kibana plugins.
+E.g. Security needs to be loaded, but will only be "rendered" in certain
+cases, e.g. login screen. It still needs to run in the background at all
+times to do it's work, e.g. listening for 401 on ajax requests etc.)
+
 Initially two types of extensions: Plugins and Applications. The primary
 difference is that plugins are not rendered, while applications are. Only
 _one_ application is rendered at a time. Plugins and apps can also depend
 on other plugins.
 
 In the future we might have other types of extensions, such as vis extensions.
-
-(Hm, does this _actually_ fit with our current x-plugins? Security needs to
-be loaded, but will only be "rendered" on the login screen. It still needs
-to run in the background at all times, right? How do we handle Security today?)
 
 # Lifecycle
 
