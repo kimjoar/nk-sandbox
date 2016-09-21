@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Application from './'
+import ApplicationView from './ApplicationView'
 import { updateTimepickerRefreshInterval } from '../../actions/timepicker'
 import {
   getApplication,
@@ -22,4 +22,4 @@ export default connect(
   {
     updateTimepickerRefreshInterval
   }
-)(Application)
+)(ApplicationView)
