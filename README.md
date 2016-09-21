@@ -32,6 +32,10 @@ _Maybe_ add `render` to make it easier for React plugins:
 
 - `render`: To render, defaults to `<div />`
 
+(Note: `render` is added in the code now, mostly because `Match` and other
+router helpers rely on `context`, so they no longer work if a plugin renders
+a _new_ React app.)
+
 ## Plugin (class: `KibanaPlugin`)
 
 - `constructor`: All plugins are created when Kibana starts up
