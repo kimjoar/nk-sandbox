@@ -1,6 +1,15 @@
 We're merging multiple philosophies. And we want to do it cleanly.
 Which philosophy has to yield? (i.e. there will be pain for some)
 
+# Extension "points"
+
+Initially two types of extensions: Plugins and Applications. The primary
+difference is that plugins are not rendered, while applications are. Only
+_one_ application is rendered at a time. Plugins and apps can also depend
+on other plugins.
+
+In the future we might have other types of extensions, such as vis extensions.
+
 # Lifecycle
 
 Applications and plugins should have a proper lifecycle.
