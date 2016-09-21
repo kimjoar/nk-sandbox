@@ -10,6 +10,10 @@ on other plugins.
 
 In the future we might have other types of extensions, such as vis extensions.
 
+(Hm, does this _actually_ fit with our current x-plugins? Security needs to
+be loaded, but will only be "rendered" on the login screen. It still needs
+to run in the background at all times, right? How do we handle Security today?)
+
 # Lifecycle
 
 Applications and plugins should have a proper lifecycle.
