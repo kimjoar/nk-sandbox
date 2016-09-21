@@ -18,9 +18,10 @@ Applications and plugins should have a proper lifecycle.
 
 - `constructor`: Applications are created when needed
 - `willMount`: A Kibana app won't always render, called before rendering
-- `didMount`: After plugin has rendered, you know have `el` available
-- `willUpdate`: Before new props, e.g. if core or plugins state has changed
-- `didUpdate`: After new props
+- `didMount({ el })`: After plugin has rendered, you now have `el` available
+- `willUpdate(nextProps)`: Before new props, e.g. if core or plugins state
+  has changed
+- `didUpdate`: After new props have been set
 - `willUnmount`: When removing app
 
 _Maybe_ add `render` to make it easier for React plugins:
@@ -30,8 +31,8 @@ _Maybe_ add `render` to make it easier for React plugins:
 ## Plugin (class: `KibanaPlugin`)
 
 - `constructor`: All plugins are created when Kibana starts up
-- `willUpdate`: Receiving new props, e.g. if core or plugins state has changed
-- `didUpdate`: After new props
+- `willUpdate(nextProps)`: Before new props, e.g. if core or plugins state
+- `didUpdate`: After new props have been set
 
 (Does it make sense to start and stop a plugin? What's the process for it?
 If so we also need lifecycle events for when it's added and removed.)
