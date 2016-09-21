@@ -38,15 +38,20 @@ If so we also need lifecycle events for when it's added and removed.)
 
 # State
 
-Both core and plugin state lives in Redux in core
+Both core and plugin/application state lives in Redux in core. That ensures
+that we'll re-render both core and apps whenever state changes.
 
 - Within core it's normal action -> reducer flow.
-- From plugins it's notifying about change, then core pulling changes.
+- From plugins/apps it's notifying about change, then core pulling changes.
 
-Re-render plugins when state has updated. This will trigger `willUpdate` and `didUpdate`.
-Also broadcast changes using a middleware? (If so, use Court's idea for specific broadcasts?)
+This will trigger `willUpdate` and `didUpdate` on apps and plugins.
 
-Doing this it should be easy to include in Redux, Angular, and other apps.
+Should we also broadcast changes using a middleware? (If so, use Court's
+idea for specific broadcasts?)
+
+Doing this it _should_ be easy to include in Redux, Angular, and other apps.
+One thing we need to make sure of is how to propagate the state into
+Angular apps.
 
 # Communication
 
