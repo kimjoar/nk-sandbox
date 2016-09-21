@@ -54,6 +54,15 @@ Doing this it _should_ be easy to include in Redux, Angular, and other apps.
 One thing we need to make sure of is how to propagate the state into
 Angular apps.
 
+## Source-of-truth
+
+To make it clear: We _won't_ strictly have one source-of-truth.
+Core _will_, but plugins and apps own their own state. However, we "copy"
+the _public_ state into Core to make it available for other plugins and apps.
+
+Something we need to explore: I worry about loops. Plugin A sets new state,
+Core pulls it, re-renders Plugin A, which trigger a new update, Core pulls, etc.
+
 # Communication
 
 We need to handle communication from core to plugin, from plugin to core,
