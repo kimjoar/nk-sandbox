@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { omit } from 'lodash'
 
-export default class AppWrapper extends Component {
+export default class AppAdapter extends Component {
   
   constructor(props) {
     super(props);

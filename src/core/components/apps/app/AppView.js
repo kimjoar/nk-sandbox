@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import deepEqual from 'deep-equal';
 import { Match, matchPattern } from 'react-router';
 
-import AppWrapper from './AppWrapper';
+import AppAdapter from './AppAdapter';
 import AppBase from './AppBase';
 
 // Every app in its own JS
@@ -61,7 +61,7 @@ class AppView extends Component {
       }
     };
 
-    return <AppWrapper
+    return <AppAdapter
       App={ App }
       core={ core }
       api={ api } />
