@@ -74,15 +74,21 @@ External api (aka actions) + state?
 
 How do we get specific broadcast to work for plugins?
 
-### Depend on other Kibana apps or plugins
+### Depend on other Kibana plugins
 
 Strict pre-defined deps? Maybe something like:
 
 ```
-dependsOn: ['plugin-1', 'app-1', 'app-3']
+dependsOn: ['plugin-1', 'plugin-2']
 ```
 
-Is this _actually_ needed?
+Does it ever make sense to depend on an app? It has to _only_ be plugins,
+right? As apps are only rendered one at a time, so it doesn't make sense
+to depend on others.
+
+_However_, what about plugins? Can they depend on apps? That _seems_ weird,
+but not sure I've thought of the edge-cases. E.g. does reporting _depend_
+on Visualize?
 
 # Router
 
