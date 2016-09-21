@@ -31,6 +31,10 @@ _Maybe_ add `render` to make it easier for React plugins:
 
 - `constructor`: All plugins are created when Kibana starts up
 - `willUpdate`: Receiving new props, e.g. if core or plugins state has changed
+- `didUpdate`: After new props
+
+(Does it make sense to start and stop a plugin? What's the process for it?
+If so we also need lifecycle events for when it's added and removed.)
 
 # State
 
