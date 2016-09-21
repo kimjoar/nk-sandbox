@@ -112,7 +112,8 @@ Which end up in a "pure Redux action dispatch"?
 
 External api (aka actions) + state?
 
-How do we get specific broadcast to work for plugins?
+(_If_ we end up broadcasting like in Court's suggestion, how do we get
+specific broadcast to work for plugins?)
 
 Potential idea for external api:
 
