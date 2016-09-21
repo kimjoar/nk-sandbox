@@ -114,6 +114,22 @@ External api (aka actions) + state?
 
 How do we get specific broadcast to work for plugins?
 
+Potential idea for external api:
+
+```
+class MyApp extends KibanaApplication {
+  api = {
+    sayHi: (name) => this.doSomething(name)
+  }
+}
+```
+
+A plugin gets access to this through:
+
+```
+this.props.applications.MyApp.sayHi("foo")
+```
+
 ### Depend on other Kibana plugins
 
 Strict pre-defined deps? Maybe something like:
