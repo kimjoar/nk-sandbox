@@ -1,8 +1,8 @@
-import { SET_REFRESH_INTEVAL } from '../../actions/timepicker'
+import { SET_REFRESH_INTEVAL } from '../../actions/timepicker';
 
 const initialState = {
   refreshInterval: 10
-}
+};
 
 export default function timepickerReducer(timepicker = initialState, action) {
   if (action.type === SET_REFRESH_INTEVAL) {
@@ -11,8 +11,7 @@ export default function timepickerReducer(timepicker = initialState, action) {
       refreshInterval: action.payload
     }
   }
-
-  return timepicker
+  return timepicker;
 }
 
-export const getRefreshInterval = state => state.refreshInterval
+export const getRefreshInterval = state => state.refreshInterval;

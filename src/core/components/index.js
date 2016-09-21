@@ -1,3 +1,3 @@
 export {
-  default as AppContainer
-} from './AppContainer';
+  default as KibanaContainer
+} from './KibanaContainer';

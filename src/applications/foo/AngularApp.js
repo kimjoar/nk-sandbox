@@ -24,4 +24,4 @@ myApp.controller('FooController', function($scope, $timeout) {
   }, 1000)
 });
 
-export default myApp
+export default myApp;

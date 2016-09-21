@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { omit } from 'lodash'
 
-class KibanaApplicationRunner extends Component {
+export default class AppWrapper extends Component {
+  
   constructor(props) {
-    super(props)
-
-    this.app = new props.App(omit(props, 'App'))
-    this.el = undefined
+    super(props);
+    this.app = new props.App(omit(props, 'App'));
+    this.el = undefined;
   }
 
   componentWillMount() {
-    this.app.willMount()
+    this.app.willMount();
   }
 
   componentDidMount() {
@@ -20,14 +20,14 @@ class KibanaApplicationRunner extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    var newProps = omit(nextProps, 'App')
-    this.app.willUpdate(newProps)
-    this.app.props = newProps
-    this.app.didUpdate()
+    var newProps = omit(nextProps, 'App');
+    this.app.willUpdate(newProps);
+    this.app.props = newProps;
+    this.app.didUpdate();
   }
 
   componentWillUnmount() {
-    this.app.willUnmount()
+    this.app.willUnmount();
   }
 
   render() {
@@ -36,5 +36,3 @@ class KibanaApplicationRunner extends Component {
     </div>
   }
 }
-
-export default KibanaApplicationRunner

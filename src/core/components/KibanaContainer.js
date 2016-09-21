@@ -1,11 +1,11 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import AppView from './AppView'
-import { getApplications } from '../reducers'
+import KibanaView from './KibanaView';
+import { getApplications } from '../reducers';
 
 const mapStateToProps = state => ({
   applications: getApplications(state)
-})
+});
 
 export default connect(
   mapStateToProps,
@@ -14,4 +14,4 @@ export default connect(
   {
     pure: false
   }
-)(AppView)
+)(KibanaView);

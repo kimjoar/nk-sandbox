@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import createLogger from 'redux-logger'
-import immutableStateInvariant from 'redux-immutable-state-invariant'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import immutableStateInvariant from 'redux-immutable-state-invariant';
 
-import reducers from './core/reducers'
+import reducers from './core/reducers';
 
 const getEnhancer = () =>
   compose(
@@ -20,7 +20,7 @@ const getEnhancer = () =>
 
     // instrument with the dev tools if the browser extension is being used
     window.devToolsExtension ? window.devToolsExtension() : f => f
-  )
+  );
 
 export default ({ initial } = {}) =>
-  createStore(reducers, initial, getEnhancer())
+  createStore(reducers, initial, getEnhancer());

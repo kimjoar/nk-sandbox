@@ -1,41 +1,41 @@
-import React, { Component } from 'react'
-import deepEqual from 'deep-equal'
-import { Match, matchPattern } from 'react-router'
+import React, { Component } from 'react';
+import deepEqual from 'deep-equal';
+import { Match, matchPattern } from 'react-router';
 
-import KibanaApplicationRunner from './KibanaApplicationRunner'
-import KibanaApplicationBase from './KibanaApplicationBase'
+import AppWrapper from './AppWrapper';
+import AppBase from './AppBase';
 
 // Every app in its own JS
 // https://webpack.github.io/docs/code-splitting.html
 function loadApp(packageName) {
   return new Promise(resolve => {
     require.ensure([], () => {
-      resolve(require(`../../../applications/${packageName}/index`).default)
-    })
-  })
+      resolve(require(`../../../../applications/${packageName}/index`).default);
+    });
+  });
 }
 
-class ApplicationView extends Component {
+class AppView extends Component {
   state = {
     // The currently running application
     App: undefined
-  }
+  };
 
   componentWillMount() {
-    const { appMeta } = this.props
-    this.loadApp(appMeta.id)
+    const { appMeta } = this.props;
+    this.loadApp(appMeta.id);
   }
 
   componentWillReceiveProps(nextProps) {
     // Whenever we switch application, load the new app
     if (this.props.appMeta.id !== nextProps.appMeta.id) {
-      this.loadApp(nextProps.appMeta.id)
+      this.loadApp(nextProps.appMeta.id);
     }
   }
 
   // TODO Remove when React Router doesn't unnecessarily update `params`
   shouldComponentUpdate(nextProps, nextState) {
-    return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state)
+    return !deepEqual(nextProps, this.props) || !deepEqual(nextState, this.state);
   }
 
   render() {
@@ -43,8 +43,8 @@ class ApplicationView extends Component {
       appMeta,
       core,
       updateTimepickerRefreshInterval
-    } = this.props
-    const { App } = this.state
+    } = this.props;
+    const { App } = this.state;
 
     if (App === undefined) {
       return <p>Fetching app: { appMeta.name }</p>
@@ -59,9 +59,9 @@ class ApplicationView extends Component {
         Match,
         matchPattern
       }
-    }
+    };
 
-    return <KibanaApplicationRunner
+    return <AppWrapper
       App={ App }
       core={ core }
       api={ api } />
@@ -72,16 +72,16 @@ class ApplicationView extends Component {
   loadApp(id) {
     this.setState({
       App: undefined
-    })
+    });
 
     // Only load app when needed
     loadApp(id).then(createAppClass => {
       this.setState({
-        App: createAppClass(KibanaApplicationBase)
-      })
-    })
+        App: createAppClass(AppBase)
+      });
+    });
   }
 }
 
-export default ApplicationView
+export default AppView
 

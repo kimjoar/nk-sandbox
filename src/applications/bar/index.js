@@ -1,37 +1,37 @@
 import React from 'react';
 
-console.log('bar required')
+console.log('bar required');
 
 function Login() {
   return <p>Login</p>
 }
 
-export default KibanaApplication =>
-  class Bar extends KibanaApplication {
+export default AppBase =>
+  class Bar extends AppBase {
     constructor(props) {
-      super(props)
-      console.log('bar constructor', props)
+      super(props);
+      console.log('bar constructor', props);
     }
 
     didMount({ el }) {
       this.el = el
-      console.log('bar did mount', el, this.props)
+      console.log('bar did mount', el, this.props);
 
       this._interval = setInterval(() => {
         this.props.api.timepicker.updateRefreshInterval(Math.random() * 100)
-      }, 3000)
+      }, 3000);
     }
 
     didUpdate() {
-      console.log('bar did update', this.props.core)
+      console.log('bar did update', this.props.core);
     }
 
     willUnmount() {
-      clearInterval(this._interval)
+      clearInterval(this._interval);
     }
 
     render() {
-      const { Match } = this.props.api.routing
+      const { Match } = this.props.api.routing;
 
       return <div>
         <p>bar: { this.props.core.refreshInterval }!</p>

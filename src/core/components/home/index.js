@@ -1,3 +1,3 @@
 export {
   default as HomeContainer,
-} from './HomeContainer'
+} from './HomeContainer';
