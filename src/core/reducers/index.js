@@ -1,18 +1,18 @@
 import { combineReducers } from 'redux';
 
-import applications, * as fromApplications from './applications';
+import plugins, * as fromPlugins from './plugins';
 import timepicker, * as fromTimepicker from './timepicker';
 
 export default combineReducers({
-  applications,
+  plugins,
   timepicker
 });
 
-export const getApplications = state =>
-  fromApplications.getAll(state.applications);
+export const getPlugins = state =>
+  fromPlugins.getAll(state.plugins)
 
-export const getApplication = (state, appId) =>
-  fromApplications.get(state.applications, appId);
+export const getApplication = (state, pluginId, appId) =>
+  fromPlugins.getApplication(state.plugins, pluginId, appId);
 
 export const getTimepickerRefreshInterval = state =>
   fromTimepicker.getRefreshInterval(state.timepicker);

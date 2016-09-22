@@ -7,10 +7,10 @@ import AppBase from './AppBase';
 
 // Every app in its own JS
 // https://webpack.github.io/docs/code-splitting.html
-function loadApp(packageName) {
+function loadApp(pluginId, appId) {
   return new Promise(resolve => {
     require.ensure([], () => {
-      resolve(require(`../../../../applications/${packageName}/index`).default);
+      resolve(require(`../../../../plugins/${pluginId}/apps/${appId}/index`).default);
     });
   });
 }
@@ -22,14 +22,14 @@ class AppView extends Component {
   };
 
   componentWillMount() {
-    const { appMeta } = this.props;
-    this.loadApp(appMeta.id);
+    const { pluginId, appMeta } = this.props;
+    this.loadApp(pluginId, appMeta.id);
   }
 
   componentWillReceiveProps(nextProps) {
     // Whenever we switch application, load the new app
     if (this.props.appMeta.id !== nextProps.appMeta.id) {
-      this.loadApp(nextProps.appMeta.id);
+      this.loadApp(nextProps.pluginId, nextProps.appMeta.id);
     }
   }
 
@@ -69,13 +69,13 @@ class AppView extends Component {
 
   // Helper that first resets the current app, then fetches and prepares the
   // new app
-  loadApp(id) {
+  loadApp(pluginId, appId) {
     this.setState({
       App: undefined
     });
 
     // Only load app when needed
-    loadApp(id).then(createAppClass => {
+    loadApp(pluginId, appId).then(createAppClass => {
       this.setState({
         App: createAppClass(AppBase)
       });
