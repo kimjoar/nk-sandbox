@@ -84,7 +84,11 @@ extend? One example is that it now registers interceptors on ajax requests
 (in order to redirect to login page if a 401 is received).
 
 Some plugins also need to register additional extension points, e.g. the
-Management app.
+Management app (see more about this further down).
+
+One potential issue: Let's say we have notifications as a core feature.
+A plugin wants to add a notification that includes a link. How? This needs
+an api that includes rendering, which opens a can of worms.
 
 (Hm, need to think about extending "Kibana facade" vs actually extending
 core. What's the difference? Is only extending the kit/api needed?)
@@ -138,6 +142,17 @@ dependsOn: ['plugin-1', 'plugin-2']
 ```
 
 (TODO: Describe in more detail)
+
+## Defining extension points
+
+How does plugins define extension points? E.g. management plugin defining
+a `managementSections` extension.
+
+Maybe a `registerExtension` helper received from core? How do they start?
+Who owns the lifecycle? How do they render?
+
+I think this brings us into the problems of React within Angular within React
+all the way down.
 
 # Router
 
