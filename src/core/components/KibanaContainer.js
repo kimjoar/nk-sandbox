@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 
 import KibanaView from './KibanaView';
-import { getApplications } from '../reducers';
+import { getPlugins } from '../reducers';
 
 const mapStateToProps = state => ({
-  applications: getApplications(state)
+  plugins: getPlugins(state)
 });
 
 export default connect(

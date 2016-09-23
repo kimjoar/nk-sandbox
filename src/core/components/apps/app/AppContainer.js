@@ -8,7 +8,8 @@ import {
 } from '../../../reducers';
 
 const mapStateToProps = (state, props) => ({
-  appMeta: getApplication(state, props.params.id),
+  pluginId: props.params.pluginId,
+  appMeta: getApplication(state, props.params.pluginId, props.params.appId),
 
   // TODO Maybe move this into reselect and process entire state
   // we want to give to plugins?

@@ -12,7 +12,7 @@ function NoApp() {
 function ApplicationsView({ pathname }) {
   return <div>
     <Match exactly pattern={ pathname } component={ NoApp } />
-    <Match pattern={`${pathname}/:id`} component={ AppContainer } />
+    <Match pattern={`${pathname}/:pluginId/:appId`} component={ AppContainer } />
   </div>
 }
 
