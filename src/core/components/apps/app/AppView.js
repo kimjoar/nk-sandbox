@@ -22,14 +22,14 @@ class AppView extends Component {
   };
 
   componentWillMount() {
-    const { pluginId, appMeta } = this.props;
-    this.loadApp(pluginId, appMeta.id);
+    const { appMeta } = this.props;
+    this.loadApp(appMeta.pluginId, appMeta.id);
   }
 
   componentWillReceiveProps(nextProps) {
     // Whenever we switch application, load the new app
     if (this.props.appMeta.id !== nextProps.appMeta.id) {
-      this.loadApp(nextProps.pluginId, nextProps.appMeta.id);
+      this.loadApp(nextProps.appMeta.pluginId, nextProps.appMeta.id);
     }
   }
 

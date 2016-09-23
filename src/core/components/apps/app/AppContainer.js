@@ -7,9 +7,16 @@ import {
   getTimepickerRefreshInterval
 } from '../../../reducers';
 
+function getApplicationWithPlugin(state, pluginId, appId) {
+  const app = getApplication(state, pluginId, appId)
+  return {
+    ...app,
+    pluginId
+  }
+}
+
 const mapStateToProps = (state, props) => ({
-  pluginId: props.params.pluginId,
-  appMeta: getApplication(state, props.params.pluginId, props.params.appId),
+  appMeta: getApplicationWithPlugin(state, props.params.pluginId, props.params.appId),
 
   // TODO Maybe move this into reselect and process entire state
   // we want to give to plugins?
