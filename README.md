@@ -1,5 +1,16 @@
-We're merging multiple philosophies. And we want to do it cleanly.
-Which philosophy has to yield? (i.e. there will be pain for some)
+This PoC is based on React and Redux as the "main" abstractions.
+That means we have certain limitations around how state is handled
+as we _try_ to stay close to the idea of a "unidirectional data flow".
+(We don't strictly have a single source-of-truth, though, as plugins own
+their own state.)
+
+In some ways we can say that this PoC attempts a CQRS-ish style pattern to
+communication between plugins.
+
+Also, to be clear, with plugins we're merging multiple philosophies (as
+we'll have plugins in several (and quite different) frameworks). And we
+want to do it cleanly. Which philosophy has to yield? (i.e. there will
+be pain for some)
 
 # Plugins
 
@@ -9,8 +20,8 @@ A plugin can consist of multiple extensions, e.g. multiple applications.
 A plugin can also define new extension points, e.g. such as the management
 app or vis extensions.
 
-NOTE: When talking about plugins in the rest of this document I usually
-talk about _any_ extension.
+Another type of extension is services. These are additional "features" the
+plugin provides to other plugins (and potentially core).
 
 # Lifecycle
 
@@ -114,23 +125,30 @@ External api (aka actions) + state + extension points.
 (_If_ we end up broadcasting like in Court's suggestion, how do we get
 specific broadcast to work for plugins?)
 
-EDIT: Got new ideas for the stuff below after chatting to Uri, will be
-updating it asap.
-
-Potential idea for external api:
+Should an api be defined on an app (which is only loaded and active when
+shown), or some additional service? If so, that service also needs a lifecycle.
+Services basically end up as being CQRS-ish. I'm not able to think of another
+way that fits into the Redux flow, as these services also want to receive
+state updates from the core store.
 
 ```
-class MyApp extends KibanaApplication {
+class SecurityService extends KibanaService {
+
   api = {
-    sayHi: (name) => this.doSomething(name)
+    login: (username, password) => {
+      this.doThings()
+    }
+  }
+
+  getState() {
+    return {
+      isLoggedIn: false,
+      user: {
+        // ...
+      }
+    }
   }
 }
-```
-
-A plugin gets access to this through:
-
-```
-this.props.applications.MyApp.sayHi("foo")
 ```
 
 ### Depend on other Kibana plugins
@@ -141,7 +159,9 @@ Strict pre-defined deps? Maybe something like:
 dependsOn: ['plugin-1', 'plugin-2']
 ```
 
-(TODO: Describe in more detail)
+TODO: I really liked Spencer's approach in https://github.com/spalger/kpocs,
+how could that be incorporated? Would that be a separate provider "phase",
+then when we have all deps kick of the services and apps?
 
 ## Defining extension points
 
