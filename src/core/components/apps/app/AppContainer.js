@@ -2,9 +2,6 @@ import { connect } from 'react-redux';
 
 import AppView from './AppView';
 import {
-  registerApi
-} from '../../../actions/apis'
-import {
   updateTimepickerRefreshInterval
 } from '../../../actions/timepicker';
 import {
@@ -33,7 +30,6 @@ const mapStateToProps = (state, props) => ({
 export default connect(
   mapStateToProps,
   {
-    updateTimepickerRefreshInterval,
-    registerApi
+    updateTimepickerRefreshInterval
   }
 )(AppView);

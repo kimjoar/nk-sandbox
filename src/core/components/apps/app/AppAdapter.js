@@ -13,7 +13,6 @@ export default class AppAdapter extends Component {
   }
 
   componentWillMount() {
-    this.props.registerApi(this.app.api)
     this.app.willMount();
   }
 
@@ -31,7 +30,6 @@ export default class AppAdapter extends Component {
   }
 
   componentWillUnmount() {
-    // unregister api
     this.app.willUnmount();
   }
 

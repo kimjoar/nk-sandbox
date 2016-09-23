@@ -5,31 +5,20 @@ import { Match, matchPattern } from 'react-router';
 import AppAdapter from './AppAdapter';
 import AppBase from './AppBase';
 
-// Every app in its own JS
-// https://webpack.github.io/docs/code-splitting.html
-function loadApp(pluginId, appId) {
-  return new Promise(resolve => {
-    require.ensure([], () => {
-      resolve(require(`../../../../plugins/${pluginId}/apps/${appId}/index`).default);
-    });
-  });
-}
+const createAppClass = app => app.factory(AppBase)
 
 class AppView extends Component {
   state = {
     // The currently running application
-    App: undefined
+    App: createAppClass(this.props.appMeta)
   };
 
-  componentWillMount() {
-    const { appMeta } = this.props;
-    this.loadApp(appMeta.pluginId, appMeta.id);
-  }
-
   componentWillReceiveProps(nextProps) {
-    // Whenever we switch application, load the new app
+    // Whenever we switch application, prepare the new app
     if (this.props.appMeta.id !== nextProps.appMeta.id) {
-      this.loadApp(nextProps.appMeta.pluginId, nextProps.appMeta.id);
+      this.setState({
+        App: createAppClass(nextProps.appMeta)
+      })
     }
   }
 
@@ -42,14 +31,9 @@ class AppView extends Component {
     const {
       appMeta,
       core,
-      registerApi,
       updateTimepickerRefreshInterval
     } = this.props;
     const { App } = this.state;
-
-    if (App === undefined) {
-      return <p>Fetching app: { appMeta.name }</p>
-    }
 
     // Build up the api that we make available to plugins
     const kibana = {
@@ -63,25 +47,10 @@ class AppView extends Component {
     };
 
     return <AppAdapter
+      key={ appMeta.id }
       App={ App }
       core={ core }
-      kibana={ kibana }
-      registerApi={ api => registerApi(appMeta, api) } />
-  }
-
-  // Helper that first resets the current app, then fetches and prepares the
-  // new app
-  loadApp(pluginId, appId) {
-    this.setState({
-      App: undefined
-    });
-
-    // Only load app when needed
-    loadApp(pluginId, appId).then(createAppClass => {
-      this.setState({
-        App: createAppClass(AppBase)
-      });
-    });
+      kibana={ kibana } />
   }
 }
 
