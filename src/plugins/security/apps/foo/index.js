@@ -26,7 +26,7 @@ export default KibanaApplication =>
       angular.bootstrap(el, ['myApp']);
 
       this._interval = setInterval(() => {
-        this.props.api.timepicker.updateRefreshInterval(Math.random() * 100)
+        this.props.kibanaFacade.timepicker.updateRefreshInterval(Math.random() * 100)
       }, 3000);
     }
 

@@ -18,7 +18,7 @@ export default AppBase =>
       console.log('bar did mount', el, this.props);
 
       this._interval = setInterval(() => {
-        this.props.api.timepicker.updateRefreshInterval(Math.random() * 100)
+        this.props.kibanaFacade.timepicker.updateRefreshInterval(Math.random() * 100)
       }, 3000);
     }
 
@@ -31,7 +31,7 @@ export default AppBase =>
     }
 
     render() {
-      const { Match } = this.props.api.routing;
+      const { Match } = this.props.kibanaFacade.routing;
 
       return <div>
         <p>bar: { this.props.core.refreshInterval }!</p>
