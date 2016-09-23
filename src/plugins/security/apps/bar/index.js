@@ -8,6 +8,10 @@ function Login() {
 
 export default AppBase =>
   class Bar extends AppBase {
+    api = {
+      login: baz => console.log('login', baz)
+    }
+
     constructor(props) {
       super(props);
       console.log('bar constructor', props);
@@ -18,7 +22,7 @@ export default AppBase =>
       console.log('bar did mount', el, this.props);
 
       this._interval = setInterval(() => {
-        this.props.kibanaFacade.timepicker.updateRefreshInterval(Math.random() * 100)
+        this.props.kibana.timepicker.updateRefreshInterval(Math.random() * 100)
       }, 3000);
     }
 
@@ -31,7 +35,7 @@ export default AppBase =>
     }
 
     render() {
-      const { Match } = this.props.kibanaFacade.routing;
+      const { Match } = this.props.kibana.routing;
 
       return <div>
         <p>bar: { this.props.core.refreshInterval }!</p>

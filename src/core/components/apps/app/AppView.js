@@ -42,6 +42,7 @@ class AppView extends Component {
     const {
       appMeta,
       core,
+      registerApi,
       updateTimepickerRefreshInterval
     } = this.props;
     const { App } = this.state;
@@ -51,7 +52,7 @@ class AppView extends Component {
     }
 
     // Build up the api that we make available to plugins
-    const kibanaFacade = {
+    const kibana = {
       timepicker: {
         updateRefreshInterval: updateTimepickerRefreshInterval
       },
@@ -64,7 +65,8 @@ class AppView extends Component {
     return <AppAdapter
       App={ App }
       core={ core }
-      kibanaFacade={ kibanaFacade } />
+      kibana={ kibana }
+      registerApi={ api => registerApi(appMeta, api) } />
   }
 
   // Helper that first resets the current app, then fetches and prepares the

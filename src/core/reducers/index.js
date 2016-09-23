@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
 
+import apis, * as fromApis from './apis';
 import plugins, * as fromPlugins from './plugins';
 import timepicker, * as fromTimepicker from './timepicker';
 
 export default combineReducers({
+  apis,
   plugins,
   timepicker
 });

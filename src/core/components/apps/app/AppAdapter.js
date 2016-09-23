@@ -5,11 +5,15 @@ export default class AppAdapter extends Component {
   
   constructor(props) {
     super(props);
-    this.app = new props.App(omit(props, 'App'));
+
+    const { App } = props
+
+    this.app = new App(omit(props, 'App'));
     this.el = undefined;
   }
 
   componentWillMount() {
+    this.props.registerApi(this.app.api)
     this.app.willMount();
   }
 
@@ -27,6 +31,7 @@ export default class AppAdapter extends Component {
   }
 
   componentWillUnmount() {
+    // unregister api
     this.app.willUnmount();
   }
 

@@ -16,3 +16,5 @@ export default {
     name: 'Logout'
   }]
 }
+
+// register services?
