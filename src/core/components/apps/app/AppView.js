@@ -5,31 +5,20 @@ import { Match, matchPattern } from 'react-router';
 import AppAdapter from './AppAdapter';
 import AppBase from './AppBase';
 
-// Every app in its own JS
-// https://webpack.github.io/docs/code-splitting.html
-function loadApp(pluginId, appId) {
-  return new Promise(resolve => {
-    require.ensure([], () => {
-      resolve(require(`../../../../plugins/${pluginId}/apps/${appId}/index`).default);
-    });
-  });
-}
+const createAppClass = app => app.factory(AppBase)
 
 class AppView extends Component {
   state = {
     // The currently running application
-    App: undefined
+    App: createAppClass(this.props.appMeta)
   };
 
-  componentWillMount() {
-    const { pluginId, appMeta } = this.props;
-    this.loadApp(pluginId, appMeta.id);
-  }
-
   componentWillReceiveProps(nextProps) {
-    // Whenever we switch application, load the new app
+    // Whenever we switch application, prepare the new app
     if (this.props.appMeta.id !== nextProps.appMeta.id) {
-      this.loadApp(nextProps.pluginId, nextProps.appMeta.id);
+      this.setState({
+        App: createAppClass(nextProps.appMeta)
+      })
     }
   }
 
@@ -42,44 +31,28 @@ class AppView extends Component {
     const {
       appMeta,
       core,
+      apis,
       updateTimepickerRefreshInterval
     } = this.props;
     const { App } = this.state;
 
-    if (App === undefined) {
-      return <p>Fetching app: { appMeta.name }</p>
-    }
-
     // Build up the api that we make available to plugins
-    const api = {
+    const kibana = {
       timepicker: {
         updateRefreshInterval: updateTimepickerRefreshInterval
       },
       routing: {
         Match,
         matchPattern
-      }
+      },
+      ...apis
     };
 
     return <AppAdapter
+      key={ appMeta.id }
       App={ App }
       core={ core }
-      api={ api } />
-  }
-
-  // Helper that first resets the current app, then fetches and prepares the
-  // new app
-  loadApp(pluginId, appId) {
-    this.setState({
-      App: undefined
-    });
-
-    // Only load app when needed
-    loadApp(pluginId, appId).then(createAppClass => {
-      this.setState({
-        App: createAppClass(AppBase)
-      });
-    });
+      kibana={ kibana } />
   }
 }
 

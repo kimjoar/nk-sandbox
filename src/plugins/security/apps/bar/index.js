@@ -18,12 +18,18 @@ export default AppBase =>
       console.log('bar did mount', el, this.props);
 
       this._interval = setInterval(() => {
-        this.props.api.timepicker.updateRefreshInterval(Math.random() * 100)
+        this.props.kibana.timepicker.updateRefreshInterval(Math.random() * 100)
       }, 3000);
     }
 
     didUpdate() {
-      console.log('bar did update', this.props.core);
+      const { core, kibana } = this.props
+
+      console.log('bar did update', core);
+
+      if (core.refreshInterval > 50) {
+        kibana.security.sayHi('world')
+      }
     }
 
     willUnmount() {
@@ -31,7 +37,7 @@ export default AppBase =>
     }
 
     render() {
-      const { Match } = this.props.api.routing;
+      const { Match } = this.props.kibana.routing;
 
       return <div>
         <p>bar: { this.props.core.refreshInterval }!</p>

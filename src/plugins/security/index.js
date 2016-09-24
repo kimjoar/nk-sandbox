@@ -5,14 +5,24 @@
 // TODO Just a random entry-point, need to explore extensions such
 // as management sections.
 
+import barFactory from './apps/bar'
+import fooFactory from './apps/foo'
+import securityServiceFactory from './services/security'
+
 export default {
   chromeNavControls: ['./views/nav_control'],
   managementSections: ['./views/management'],
   apps: [{
     id: 'bar',
-    name: 'Login'
+    name: 'Login',
+    factory: barFactory
   }, {
     id: 'foo',
-    name: 'Logout'
+    name: 'Logout',
+    factory: fooFactory
+  }],
+  services: [{
+    id: 'security',
+    factory: securityServiceFactory
   }]
 }

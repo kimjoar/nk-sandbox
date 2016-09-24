@@ -5,7 +5,10 @@ export default class AppAdapter extends Component {
   
   constructor(props) {
     super(props);
-    this.app = new props.App(omit(props, 'App'));
+
+    const { App } = props
+
+    this.app = new App(omit(props, 'App'));
     this.el = undefined;
   }
 
