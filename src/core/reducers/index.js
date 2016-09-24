@@ -16,5 +16,11 @@ export const getPlugins = state =>
 export const getApplication = (state, pluginId, appId) =>
   fromPlugins.getApplication(state.plugins, pluginId, appId);
 
+export const getApis = state =>
+  fromApis.getAll(state.apis)
+
+export const getServices = state =>
+  fromPlugins.getServices(state.plugins)
+
 export const getTimepickerRefreshInterval = state =>
   fromTimepicker.getRefreshInterval(state.timepicker);

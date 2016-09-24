@@ -7,6 +7,7 @@
 
 import barFactory from './apps/bar'
 import fooFactory from './apps/foo'
+import securityServiceFactory from './services/security'
 
 export default {
   chromeNavControls: ['./views/nav_control'],
@@ -21,6 +22,7 @@ export default {
     factory: fooFactory
   }],
   services: [{
-    id: 'security'
+    id: 'security',
+    factory: securityServiceFactory
   }]
 }

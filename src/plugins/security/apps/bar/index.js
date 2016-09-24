@@ -27,7 +27,13 @@ export default AppBase =>
     }
 
     didUpdate() {
-      console.log('bar did update', this.props.core);
+      const { core, kibana } = this.props
+
+      console.log('bar did update', core);
+
+      if (core.refreshInterval > 50) {
+        kibana.security.sayHi('world')
+      }
     }
 
     willUnmount() {

@@ -1,8 +1,5 @@
-export const registerApi = (app, api) => ({
+export const registerApi = (id, api) => ({
   type: 'REGISTER_API',
   payload: api,
-  meta: {
-    pluginId: app.pluginId,
-    appId: app.id
-  }
+  meta: { id }
 })

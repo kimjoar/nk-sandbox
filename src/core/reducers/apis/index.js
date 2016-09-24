@@ -8,8 +8,7 @@ function apiReducer(api = {}, action) {
 
 export default (apis = {}, action) => {
   if (action.type === 'REGISTER_API') {
-    const { pluginId, appId } = action.meta
-    const id = `${pluginId}/${appId}`
+    const { id } = action.meta
 
     return {
       ...apis,
@@ -19,3 +18,5 @@ export default (apis = {}, action) => {
 
   return apis
 }
+
+export const getAll = state => state

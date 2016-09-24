@@ -31,6 +31,7 @@ class AppView extends Component {
     const {
       appMeta,
       core,
+      apis,
       updateTimepickerRefreshInterval
     } = this.props;
     const { App } = this.state;
@@ -43,7 +44,8 @@ class AppView extends Component {
       routing: {
         Match,
         matchPattern
-      }
+      },
+      ...apis
     };
 
     return <AppAdapter
