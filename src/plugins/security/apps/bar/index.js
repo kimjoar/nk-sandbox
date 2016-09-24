@@ -8,10 +8,6 @@ function Login() {
 
 export default AppBase =>
   class Bar extends AppBase {
-    api = {
-      login: baz => console.log('login', baz)
-    }
-
     constructor(props) {
       super(props);
       console.log('bar constructor', props);
